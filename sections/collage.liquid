@@ -3,6 +3,8 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
 
+<script>
+</script>
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -15,11 +17,14 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+  .background-color-design {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1081%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(6%2c 47%2c 132%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c501.979C100.664%2c491.59%2c199.331%2c493.094%2c294.129%2c457.674C408.747%2c414.849%2c549.485%2c385.354%2c604.56%2c276.093C659.62%2c166.861%2c580.948%2c40.032%2c565.836%2c-81.355C550.361%2c-205.659%2c592.68%2c-347.956%2c514.668%2c-445.962C436.393%2c-544.298%2c289.821%2c-541.003%2c169.93%2c-578.728C47.34%2c-617.302%2c-75.319%2c-712.107%2c-196.668%2c-669.789C-318.108%2c-627.44%2c-362.785%2c-481.565%2c-427.464%2c-370.4C-481.172%2c-278.093%2c-513.043%2c-180.841%2c-541.108%2c-77.8C-573.189%2c39.986%2c-642.875%2c160.045%2c-603.402%2c275.564C-563.339%2c392.809%2c-451.92%2c479.169%2c-335.917%2c522.697C-228.712%2c562.924%2c-113.899%2c513.734%2c0%2c501.979' fill='%23052567'%3e%3c/path%3e%3cpath d='M1440 1211.6190000000001C1558.52 1192.8 1635.031 1083.645 1726.932 1006.4739999999999 1806.637 939.543 1895.3220000000001 882.251 1942.633 789.545 1991.1799999999998 694.4159999999999 2014.638 585.204 1995.5439999999999 480.125 1976.788 376.90999999999997 1895.629 302.742 1838.219 214.94099999999997 1770.599 111.52600000000001 1743.3-36.14300000000003 1628.347-81.452 1513.569-126.69200000000001 1379.549-70.43100000000004 1273.302-7.722999999999956 1179.4560000000001 47.666000000000054 1156.743 171.418 1075.97 244.56599999999997 978.296 333.019 805.228 339.652 755.133 461.531 705.485 582.321 772.471 721.44 832.237 837.556 890.173 950.116 980.0419999999999 1041.597 1087.853 1107.952 1194.215 1173.415 1316.652 1231.205 1440 1211.6190000000001' fill='%230739a1'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1081'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e") !important;
+  }
 {%- endstyle -%}
 
 <link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="print" onload="this.media='all'">
 
-<div class="color-{{ section.settings.color_scheme }} gradient isolate">
+<div class="color-{{ section.settings.color_scheme }} background-color-design gradient isolate">
   <div class="page-width{% if section.settings.heading == blank %} no-heading{% endif %} section-{{ section.id }}-padding">
     <h2 class="collage-wrapper-title {{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</h2>
     <div class="collage{% if section.settings.mobile_layout == 'collage' %} collage--mobile{% endif %}">

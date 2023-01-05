@@ -16,6 +16,12 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+  .slider-box-shadow {
+    -webkit-box-shadow: 0px 0px 26px -4px rgba(0,99,248,0.75);
+    -moz-box-shadow: 0px 0px 26px -4px rgba(0,99,248,0.75);
+    box-shadow: 0px 0px 26px -4px rgba(0,99,248,0.75);!important;
+     border-radius: 25px;
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -50,7 +56,7 @@
           endif
         -%}
         {%- for block in section.blocks -%}
-          <li id="Slide-{{ section.id }}-{{ forloop.index }}" class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}" {{ block.shopify_attributes }}>
+          <li id="Slide-{{ section.id }}-{{ forloop.index }}" class="slider-box-shadow collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}" {{ block.shopify_attributes }}>
             {% render 'card-collection', card_collection: block.settings.collection , media_aspect_ratio: section.settings.image_ratio, columns: columns %}
           </li>
         {%- endfor -%}

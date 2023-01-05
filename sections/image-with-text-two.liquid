@@ -1,32 +1,28 @@
-{{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+{{ 'component-image-with-text-two.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-  .right {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-  }
-  .left {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  .absolute {
-    margin-right: 0 !important;  }
-  .background-left {
-    background: #8edaf2 !important;
-  }
-  .buy-now-button {
+.image-with-text-two-container {
+ height: 39.5rem;
+ border-radius: 25px;
+ display: flex;
+}
+.container {
+  width: 50%
+}
+.text-container {
+  {% comment %} background-color: #062F84; {% endcomment %}
+  background-color: #062f84;
+  background-image: linear-gradient(160deg, #062f84 0%, #86d6f4 100%);
+  border-radius: 25px 0 0 25px;
+  padding: 3rem;
+  color: #fdfbf7
+}
+.photo-container {
+  background-color: blue;
+  border-radius: 0 25px 25px 0;
+  overflow: hidden;
+}
+.buy-now-button {
   background-color: #FDFBF7;
   color: #062f84;
   font-weight: 700;
@@ -38,49 +34,58 @@
 .buy-now-button:hover {
   background-color: #062f84;
   color: #FDFBF7;
-  border: 2px solid  !Important;
+}
+.text-glow:hover {
+  text-shadow: 0 0 10px #fff, 0 0 10px #fff !Important;
+}
+.image {
+    object-fit: fill;
+    height: 100%
+}
+.description {
+  margin-bottom: 3rem;
+}
+  @media screen and (max-width: 750px) {
+  .image-with-text-two-container {
+      display: flex;
+      flex-direction: column;
+      height: 90rem;
+}
+  .container {
+    width: 100%
+  }
+  .text-container {
+  border-radius: 25px 25px 0 0;
+}
+.photo-container {
+  border-radius: 0 0 25px 25px;
+}
+.image {
+    width: 100%
+}
+}
+@media screen and (max-width: 897px) and  (min-width: 878px) {
+  .description {
+  margin-bottom: 1rem;
+}
 }
 
 {%- endstyle -%}
 
-<script>
-{% if section.settings.alignment == "right"  %}
-  console.log("right")
-{% else %}
-  console.log("left")
-{% endif %}
-</script>
-
-<div class="image-with-text image-with-text--{{ section.settings.content_layout }} page-width isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == 'background-1' and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %} section-{{ section.id }}-padding">
-  <div class="{% if section.settings.alignment == 'right'  %} right {% else %} left {% endif %} image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
-    <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
-      <div class="background-left image-with-text__media image-with-text__media--{{ section.settings.height }} gradient color-{{ section.settings.color_scheme }} global-media-settings {% if section.settings.image != blank %}media{% else %}image-with-text__media--placeholder placeholder{% endif %}"
-        {% if section.settings.height == 'adapt' and section.settings.image != blank %} style="padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;"{% endif %}
-      >
-        {%- if section.settings.image != blank -%}
-          {%- capture sizes -%}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2){%- endcapture -%}
-          {{ section.settings.image | image_url: width: 1500 | image_tag:
-            loading: 'lazy',
-            sizes: sizes,
-            widths: '165, 360, 535, 750, 1070, 1500'
-          }}
-        {%- else -%}
-          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-        {%- endif -%}
-      </div>
-    </div>
-    <div class="image-with-text__text-item grid__item">
-      <div id="ImageWithText--{{ section.id }}" class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }}  color-{{ section.settings.color_scheme }} content-container {% if section.settings.alignment == 'right'  %} absolute {% endif %} ">
-        {%- for block in section.blocks -%}
+<!-- Image with text two section starts -->
+<section class="image-with-text-two-section">
+  <div class="page-width">
+    <div class="image-with-text-two-container">
+      <div class="container text-container"> {%- for block in section.blocks -%}
           {% case block.type %}
             {%- when 'heading' -%}
-              <h2 class="image-with-text__heading {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+              <h2 class="image-with-text-two__heading {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
                 {{ block.settings.heading | escape }}
               </h2>
             {%- when 'caption' -%}
               <p class="image-with-text__text image-with-text__text--caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }} {{ block.settings.text_style }}" {{ block.shopify_attributes }}>{{ block.settings.caption | escape }}</p>
             {%- when 'text' -%}
-              <div class="image-with-text__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+              <div class="description image-with-text__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
             {%- when 'button' -%}
               {%- if block.settings.button_label != blank -%}
                 <a{% if block.settings.button_link == blank %} role="link" aria-disabled="true"{% else %} href="{{ block.settings.button_link }}"{% endif %} class="buy-now-button text-glow" {{ block.shopify_attributes }}>
@@ -88,21 +93,28 @@
                 </a>
               {%- endif -%}
           {%- endcase -%}
-        {%- endfor -%}
+        {%- endfor -%}</div>
+      <div class="container photo-container">
+            {%- if section.settings.image != blank -%}
+            <img src="{{ section.settings.image | image_url }}" class="image" />  
+            {%- else -%}
+             {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
       </div>
     </div>
   </div>
-</div>
+</section>
 
+<!-- Schema settings -->
 {% schema %}
 {
-  "name": "t:sections.image-with-text.name",
+  "name": "Image with text two",
   "class": "section",
   "settings": [
     {
       "type": "image_picker",
       "id": "image",
-      "label": "t:sections.image-with-text.settings.image.label"
+      "label": "Image"
     },
     {
       "type": "select",
@@ -123,22 +135,6 @@
       ],
       "default": "adapt",
       "label": "t:sections.image-with-text.settings.height.label"
-    },
-        {
-      "type": "select",
-      "id": "alignment",
-      "options": [
-        {
-          "value": "right",
-          "label": "Right"
-        },
-        {
-          "value": "left",
-          "label": "Left"
-        }
-      ],
-      "default": "right",
-      "label": "Right"
     },
     {
       "type": "select",
@@ -320,8 +316,8 @@
         {
           "type": "text",
           "id": "heading",
-          "default": "Image with text",
-          "label": "t:sections.image-with-text.blocks.heading.settings.heading.label"
+          "default": "Image with text two",
+          "label": "Image with text two"
         },
         {
           "type": "select",

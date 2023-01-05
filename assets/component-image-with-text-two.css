@@ -1,0 +1,40 @@
+.image-with-text-two__heading {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #fdfbf7;
+}
+
+.image-with-text-two__media {
+  object-fit: cover;
+}
+
+@media screen and (max-width: 1024px) {
+  .description {
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 877px) and (min-width: 825px) {
+  .description {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 826px) {
+  .h1 {
+    font-size: 4rem;
+  }
+}
+@media screen and (max-width: 825px) and (min-width: 751px) {
+  .h1 {
+    font-size: 3rem;
+  }
+}
+/* 
+.image-with-text-two__media--small {
+  height: 12.4rem;
+}
+
+.image-with-text-two__media--large {
+  height: 23.5rem;
+} */

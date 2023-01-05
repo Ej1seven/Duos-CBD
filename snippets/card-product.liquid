@@ -18,6 +18,11 @@
 {% endcomment %}
 
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
+<script>
+    console.log({{card_product.images | size}});
+</script>
+{%- style -%}
+{%- endstyle -%}
 
 {%- if card_product and card_product != empty -%}
   {%- liquid
@@ -50,7 +55,7 @@
       >
         {%- if card_product.featured_media -%}
           <div class="card__media">
-            <div class="media media--transparent media--hover-effect">
+            <div class="{% if card_product.images.size > 1 %} remove-top-image {% endif %} media media--transparent media--hover-effect">
               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
               <img
                 srcset="

@@ -30,6 +30,7 @@
   header-drawer {
     justify-self: start;
     margin-left: -1.2rem;
+    width: 25%;
   }
 
   .header__heading-logo {
@@ -86,7 +87,8 @@
   .header {
     padding-top: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px;
-  }
+    display: flex;
+    justify-content: space-evenly;  }
 
   .section-header {
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
@@ -95,13 +97,6 @@
   @media screen and (min-width: 750px) {
     .section-header {
       margin-bottom: {{ section.settings.margin_bottom }}px;
-    }
-  }
-
-  @media screen and (min-width: 990px) {
-    .header {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
 {%- endstyle -%}
@@ -137,7 +132,7 @@
             <div class="menu-drawer__inner-container">
               <div class="menu-drawer__navigation-container">
                 <nav class="menu-drawer__navigation">
-                  <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+                  <ul class="menu-drawer__menu has-submenu list-menu " role="list">
                     {%- for link in section.settings.menu.links -%}
                       <li>
                         {%- if link.links != blank -%}
