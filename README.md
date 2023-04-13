@@ -1,2 +1,2 @@
 # Duos-CBD
-CBD E-Commerce Website
+Duos CBD is an e-commerce store specializing in hemp products built on the Shopify platform.
